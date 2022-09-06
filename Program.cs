@@ -48,25 +48,28 @@ Positive(array);
 
 b1 = 2, k1 = 5, b2 = 4, k2 = 9 -> (-0,5; -0,5)*/
 
-double[] ParametrLine(){
-    double[] line = new double[2];
-    Console.Write("Введите свободный член уравненния: ");
-    line[1] = Convert.ToDouble(Console.ReadLine());
+double[,] ParametrLine(){
+    double[,] lines = new double[2,2];
+    Console.WriteLine("Введите параметры первой прямой");
+    Console.Write("Введите свободный член уравнения: ");
+    lines[0,1] = Convert.ToDouble(Console.ReadLine());
     Console.Write("Введите коэффициент х: ");
-    line[0] = Convert.ToDouble(Console.ReadLine());
-    return line;
+    lines[0,0] = Convert.ToDouble(Console.ReadLine());
+    Console.WriteLine("Введите параметры второй прямой");
+    Console.Write("Введите свободный член уравнения: ");
+    lines[1,1] = Convert.ToDouble(Console.ReadLine());
+    Console.Write("Введите коэффициент х: ");
+    lines[1,0] = Convert.ToDouble(Console.ReadLine());
+    return lines;
 }
 
-void Intersection(double[] array1, double[] array2){
-    double y = (array2[1] * array1[0] -array1[1]*array2[0]) / (array1[0] - array2[0]);
-    double x = (y - array1[1]) / array1[0];
+void Intersection(double[,] array){
+    double y = (array[1,1] * array[0,0] -array[0,1]*array[1,0]) / (array[0,0] - array[1,0]);
+    double x = (y - array[0,1]) / array[0,0];
     Console.WriteLine($"Координаты точки пересечения ({x}; {y})");
 }
 
 Console.WriteLine("Определение точки пересечения двух прямых");
-Console.WriteLine("Введите параметры первой прямой");
-double[] line1 = ParametrLine();
-Console.WriteLine("Введите параметры второй прямой");
-double[] line2 = ParametrLine();
+double[,] lines = ParametrLine();
 
-Intersection(line1, line2);
+Intersection(lines);
